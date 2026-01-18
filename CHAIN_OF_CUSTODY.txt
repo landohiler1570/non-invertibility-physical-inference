@@ -1,0 +1,132 @@
+CHAIN_OF_CUSTODY.txt
+Non-Invertibility of Electromagnetic Observation Operators (Methodological Section Draft)
+Date: 2026-01-16
+
+Purpose
+-------
+This file records the full logical and mathematical chain of custody for the central artifact in the
+manuscript “Non-Invertibility of Electromagnetic Observation Operators: Formal Structure and Physical Example.”
+
+It is provided so a reader can audit the argument step-by-step and pinpoint any error location.
+This is an audit trail, not a data-driven claim.
+
+Scope and Non-Claims
+--------------------
+This audit covers only the following claim:
+
+  (C1) The electromagnetic forward observation operator F_EM, mapping 3D mass-density fields to lower-
+       dimensional observables via projection/restriction, is non-invertible (not injective) and has an
+       infinite-dimensional kernel; therefore unique reconstruction of the underlying 3D state from EM
+       observations alone is impossible without additional constraints (regularizers / boundary supplements).
+
+This audit does NOT:
+  - propose new physics
+  - argue that any specific cosmological or galactic model is “wrong”
+  - make ontological claims about dark matter, Λ, or gravity
+  - present parameter fits, likelihood comparisons, or statistical claims
+
+Document Anchors (where in the manuscript)
+------------------------------------------
+- State space definition: Section 1.1, Eq. (1)
+- Observable space: Section 1.2, Eq. (2)
+- Forward operator definition: Section 1.3, Eq. (3)
+- Canonical projection example (line-of-sight): Section 1.3, Eq. (4)
+- Kernel condition and non-injectivity proof: Section 2 (Non-Invertibility)
+- Physical degeneracy example (lensing mass-sheet): Section 3 (Physical Example)
+
+Chain of Custody (Audit Steps)
+------------------------------
+
+Step 1 — Define the physical state space (inputs)
+  Input object: ρ(x, y, z) defined on a 3D spatial domain V ⊂ R^3.
+  Assumption level: minimal functional regularity only (e.g., ρ ∈ L^2(V), ρ ≥ 0 where appropriate).
+  No assumptions about particle ontology, microphysics, or dynamics are required for the core non-injectivity claim.
+
+  Manuscript anchor: Section 1.1, Eq. (1).
+
+Step 2 — Define the electromagnetic observable space (outputs)
+  Output objects: lower-dimensional observables measured via photon detection, e.g.:
+    - Σ(R) : projected surface density (2D)
+    - I(θ) : surface brightness / intensity map (2D angular)
+    - γ(θ) : weak-lensing shear (2D angular)
+    - v_c(R): rotation curve (often reduced to 1D by symmetry assumptions)
+
+  Manuscript anchor: Section 1.2, Eq. (2).
+
+Step 3 — Define the forward observation operator F_EM
+  Define the forward map:
+    F_EM : Ω → D_EM
+  In the simplest canonical case (line-of-sight projection):
+    Σ(R) = ∫ ρ(R, z) dz
+
+  This is the 3D → 2D projection structure: information along the line-of-sight coordinate is integrated out.
+
+  Manuscript anchor: Section 1.3, Eqs. (3)–(4).
+
+Step 4 — Construct explicit distinct inputs with identical outputs (non-injectivity witness)
+  Construct two distinct 3D fields ρ1 and ρ2 such that:
+    ρ1(x, y, z) ≠ ρ2(x, y, z)
+  but their projections match for all transverse positions R:
+    ∫ ρ1(R, z) dz = ∫ ρ2(R, z) dz   for all R
+
+  Equivalently, define δρ = ρ1 − ρ2 and require:
+    ∫ δρ(R, z) dz = 0  for all R
+
+  This exhibits a non-trivial null direction: δρ is invisible to the projection.
+
+  Audit checkpoint:
+    - Verify ρ1 ≠ ρ2 (they differ on a set of nonzero measure).
+    - Verify Σ1 = Σ2 exactly by direct integration.
+
+Step 5 — Identify the kernel and prove non-invertibility
+  By definition, δρ is in the kernel of the projection operator if:
+    F_EM(ρ0 + δρ) = F_EM(ρ0)  for any baseline ρ0 in Ω (where defined)
+
+  Because there exist nonzero δρ satisfying the kernel condition (Step 4), the map is not injective.
+  Therefore an inverse map F_EM^{-1} is not a single-valued function on D_EM.
+
+  Manuscript anchor: Section 2 (Non-Invertibility).
+
+Step 6 — Establish infinite-dimensionality of the kernel
+  The kernel condition (e.g., ∫ δρ dz = 0 for each R) admits infinitely many independent solutions.
+  Intuition (audit-friendly):
+    - For each fixed R, δρ(R, z) can be any function of z with zero integral.
+    - Varying R continuously yields a function space of such modes.
+  Therefore the kernel is infinite-dimensional.
+
+  Manuscript anchor: Section 2 (dimension argument).
+
+Step 7 — Physical instantiation (lensing example) and known degeneracy
+  Provide a concrete, community-recognized example showing how EM-derived lensing observables do not
+  uniquely determine absolute mass normalization (mass-sheet degeneracy):
+    κ'(θ) = λ κ(θ) + (1 − λ)
+  leaves the reduced shear invariant:
+    g = γ / (1 − κ)
+
+  This is an explicit “family of solutions” consistent with the same EM lensing observable.
+
+  Manuscript anchor: Section 3 (Physical Example).
+
+Step 8 — Regularization / boundary supplements (methodological necessity)
+  Because F_EM is non-invertible, any attempt to reconstruct ρ from EM data must add supplementary constraints,
+  e.g. smoothness, symmetry, parameterization, or external calibration data.
+
+  Audit checkpoint:
+    - Confirm that any claimed “unique reconstruction” in a workflow can be traced to a supplemental assumption
+      that reduces the admissible preimage (e.g., selecting one element of F_EM^{-1}(O)).
+
+  Manuscript anchor: Section 4 (Regularization discussion, if present; otherwise in concluding remarks).
+
+How to Falsify / Where Errors Would Live
+----------------------------------------
+If the central claim (C1) is wrong, the failure must occur in one of these places:
+
+  - Step 3: The forward operator is mis-specified (not actually a projection/restriction for the observable claimed).
+  - Step 4: The purported distinct fields do not actually yield identical observables.
+  - Step 5: Kernel membership is incorrectly asserted (algebra/integration error).
+  - Step 6: Kernel dimensionality is overstated (should be demonstrated carefully for the chosen function spaces).
+  - Step 7: The physical degeneracy is misstated or not applicable to the defined observable.
+
+This file exists so a reviewer can point to an exact step and say: “This is the error.”
+
+End of file.
